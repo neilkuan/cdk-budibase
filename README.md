@@ -1,15 +1,10 @@
 [![NPM version](https://badge.fury.io/js/cdk-budibase.svg)](https://badge.fury.io/js/cdk-budibase)
 [![PyPI version](https://badge.fury.io/py/cdk-budibase.svg)](https://badge.fury.io/py/cdk-budibase)
-![Release](https://github.com/neilkuan/cdk-budibase/workflows/Release/badge.svg)
+[![release](https://github.com/neilkuan/cdk-budibase/actions/workflows/release.yml/badge.svg)](https://github.com/neilkuan/cdk-budibase/actions/workflows/release.yml)
 
 ![Downloads](https://img.shields.io/badge/-DOWNLOADS:-brightgreen?color=gray)
 ![npm](https://img.shields.io/npm/dt/cdk-budibase?label=npm&color=orange)
 ![PyPI](https://img.shields.io/pypi/dm/cdk-budibase?label=pypi&color=blue)
-
-![](https://img.shields.io/badge/iam_role_self-enable-green=?style=plastic&logo=appveyor)
-![](https://img.shields.io/badge/vpc_self-enable-green=?style=plastic&logo=appveyor)
-![](https://img.shields.io/badge/gitlab_url-customize-green=?style=plastic&logo=appveyor)
-![](https://img.shields.io/badge/spotfleet-runner-green=?style=plastic&logo=appveyor)
 
 
 # Welcome to `cdk-budibase`
@@ -41,6 +36,20 @@ npx aws-cdk@latest deploy --app='npx ts-node src/integ.api.ts'
 npx aws-cdk@latest destroy --app='npx ts-node src/integ.api.ts'
 ```
 
+
+### Use Constructs Library in CDK APP.
+```ts
+import { BudiBaseBaseResource } from 'cdk-budibase';
+
+const app = new App();
+const env = {
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+  region: process.env.CDK_DEFAULT_REGION,
+};
+
+const stack = new Stack(app, 'MyStack', { env });
+new BudiBaseBaseResource(stack, 'BudiBaseBaseResource');
+```
 
 ### EFS
 ![](/docs/efs.png)
