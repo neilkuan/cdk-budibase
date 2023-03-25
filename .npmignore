@@ -26,5 +26,4 @@ cdk.out
 cdk.context.json
 yarn-error.log
 coverage
-venv
 image

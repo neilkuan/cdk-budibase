@@ -28,7 +28,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   workflowNodeVersion: '^14.17.0',
   typescriptVersion: '3.9.10',
 });
-const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage', 'venv'];
+const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage'];
 project.gitignore.exclude(...common_exclude);
 
 project.npmignore.exclude(...common_exclude, 'image');
