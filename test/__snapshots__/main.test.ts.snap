@@ -1,0 +1,983 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+Object {
+  "Outputs": Object {
+    "testBudiBaselbSGIdECC0592A": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "testbudiBaselbSG6CF4A056",
+          "GroupId",
+        ],
+      },
+    },
+    "testLoadBalancerDNS09D82EC8": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "testbudibaselb04CB7E45",
+          "DNSName",
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "testBudiBaseAccessPoint276AE859": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "testBudiBaseFileSystem186F3DA0",
+        },
+        "PosixUser": Object {
+          "Gid": "1001",
+          "Uid": "1001",
+        },
+        "RootDirectory": Object {
+          "CreationInfo": Object {
+            "OwnerGid": "1001",
+            "OwnerUid": "1001",
+            "Permissions": "0755",
+          },
+          "Path": "/data",
+        },
+      },
+      "Type": "AWS::EFS::AccessPoint",
+    },
+    "testBudiBaseCluster219451DD": Object {
+      "Properties": Object {
+        "ClusterName": "BudiBaseCluster",
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "testBudiBaseFileSystem186F3DA0": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "BackupPolicy": Object {
+          "Status": "ENABLED",
+        },
+        "Encrypted": true,
+        "FileSystemTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "BudiBaseFileSystem",
+          },
+        ],
+      },
+      "Type": "AWS::EFS::FileSystem",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "testBudiBaseFileSystemEfsMountTarget13AD31BDE": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "testBudiBaseFileSystem186F3DA0",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "testBudiBaseFileSystemEfsSecurityGroupD6F2BC6F",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet1Subnet7E34C168",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "testBudiBaseFileSystemEfsMountTarget2921BB568": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "testBudiBaseFileSystem186F3DA0",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "testBudiBaseFileSystemEfsSecurityGroupD6F2BC6F",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet2SubnetB20BD450",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "testBudiBaseFileSystemEfsSecurityGroupD6F2BC6F": Object {
+      "Properties": Object {
+        "GroupDescription": "test/test/BudiBaseFileSystem/EfsSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "BudiBaseFileSystem",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "testBudiBaseFileSystemEfsSecurityGroupfromtestBudiBaseSG6EE026FB2049625B3D9A": Object {
+      "Properties": Object {
+        "Description": "from testBudiBaseSG6EE026FB:2049",
+        "FromPort": 2049,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseFileSystemEfsSecurityGroupD6F2BC6F",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseSGF0736173",
+            "GroupId",
+          ],
+        },
+        "ToPort": 2049,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "testBudiBaseSGF0736173": Object {
+      "Properties": Object {
+        "GroupDescription": "test/test/BudiBaseSG",
+        "GroupName": "BudiBaseFargateService",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "BudiBaseFargateService",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "testBudiBaseSGfromtestbudiBaselbSG078436608024CCCC11": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseSGF0736173",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "testbudiBaselbSG6CF4A056",
+            "GroupId",
+          ],
+        },
+        "ToPort": 80,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "testBudiBaseService7BE969D5": Object {
+      "DependsOn": Array [
+        "testbudibaselbListener80listener80Group43F7DC76",
+        "testbudibaselbListener80CA536A6B",
+        "testBudiBaseFileSystemEfsMountTarget13AD31BDE",
+        "testBudiBaseFileSystemEfsMountTarget2921BB568",
+      ],
+      "Properties": Object {
+        "Cluster": Object {
+          "Ref": "testBudiBaseCluster219451DD",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50,
+        },
+        "EnableECSManagedTags": false,
+        "EnableExecuteCommand": true,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": Array [
+          Object {
+            "ContainerName": "budibase",
+            "ContainerPort": 80,
+            "TargetGroupArn": Object {
+              "Ref": "testbudibaselbListener80listener80Group43F7DC76",
+            },
+          },
+        ],
+        "NetworkConfiguration": Object {
+          "AwsvpcConfiguration": Object {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": Array [
+              Object {
+                "Fn::GetAtt": Array [
+                  "testBudiBaseSGF0736173",
+                  "GroupId",
+                ],
+              },
+            ],
+            "Subnets": Array [
+              Object {
+                "Ref": "testBudiBaseVpcPrivateSubnet1Subnet7E34C168",
+              },
+              Object {
+                "Ref": "testBudiBaseVpcPrivateSubnet2SubnetB20BD450",
+              },
+            ],
+          },
+        },
+        "PlatformVersion": "1.4.0",
+        "ServiceName": "budibase",
+        "TaskDefinition": Object {
+          "Ref": "testBudiBaseTaskDefinition6FC1DE20",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "testBudiBaseTaskDefinition6FC1DE20": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Essential": true,
+            "HealthCheck": Object {
+              "Command": Array [
+                "CMD-SHELL",
+                "/healthcheck.sh",
+              ],
+              "Interval": 30,
+              "Retries": 3,
+              "StartPeriod": 75,
+              "Timeout": 5,
+            },
+            "Image": "budibase/budibase:v2.2.23",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "testBudibaseContainerLogGroup87A4C423",
+                },
+                "awslogs-region": Object {
+                  "Ref": "AWS::Region",
+                },
+                "awslogs-stream-prefix": "budibase",
+              },
+            },
+            "MountPoints": Array [
+              Object {
+                "ContainerPath": "/data",
+                "ReadOnly": false,
+                "SourceVolume": "budibase-data-volume",
+              },
+            ],
+            "Name": "budibase",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 80,
+                "HostPort": 80,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 443,
+                "HostPort": 443,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 2222,
+                "HostPort": 2222,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 4369,
+                "HostPort": 4369,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 5984,
+                "HostPort": 5984,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 9100,
+                "HostPort": 9100,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+        ],
+        "Cpu": "4096",
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseTaskDefinitionExecutionRole6A075C37",
+            "Arn",
+          ],
+        },
+        "Family": "budibase-family",
+        "Memory": "8192",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "FARGATE",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseTaskDefinitionTaskRole94C79232",
+            "Arn",
+          ],
+        },
+        "Volumes": Array [
+          Object {
+            "EFSVolumeConfiguration": Object {
+              "AuthorizationConfig": Object {
+                "AccessPointId": Object {
+                  "Ref": "testBudiBaseAccessPoint276AE859",
+                },
+              },
+              "FilesystemId": Object {
+                "Ref": "testBudiBaseFileSystem186F3DA0",
+              },
+              "TransitEncryption": "ENABLED",
+            },
+            "Name": "budibase-data-volume",
+          },
+        ],
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "testBudiBaseTaskDefinitionExecutionRole6A075C37": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "testBudiBaseTaskDefinitionExecutionRoleDefaultPolicy4AE91DEC": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "testBudibaseContainerLogGroup87A4C423",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "elasticfilesystem:ClientMount",
+                "elasticfilesystem:ClientWrite",
+                "elasticfilesystem:ClientRootAccess",
+                "elasticfilesystem:DescribeMountTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "testBudiBaseFileSystem186F3DA0",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "testBudiBaseTaskDefinitionExecutionRoleDefaultPolicy4AE91DEC",
+        "Roles": Array [
+          Object {
+            "Ref": "testBudiBaseTaskDefinitionExecutionRole6A075C37",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "testBudiBaseTaskDefinitionTaskRole94C79232": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "testBudiBaseTaskDefinitionTaskRoleDefaultPolicy22EDCD15": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ssmmessages:CreateControlChannel",
+                "ssmmessages:CreateDataChannel",
+                "ssmmessages:OpenControlChannel",
+                "ssmmessages:OpenDataChannel",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "logs:DescribeLogGroups",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "testBudiBaseTaskDefinitionTaskRoleDefaultPolicy22EDCD15",
+        "Roles": Array [
+          Object {
+            "Ref": "testBudiBaseTaskDefinitionTaskRole94C79232",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "testBudiBaseVpc8BEFACD2": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "testBudiBaseVpcIGWFD48D785": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "testBudiBaseVpcPrivateSubnet1DefaultRoute9B77E13B": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1NATGateway1F2B10D2",
+        },
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet1RouteTableE99B8A7E",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "testBudiBaseVpcPrivateSubnet1RouteTableAssociation7A07E900": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet1RouteTableE99B8A7E",
+        },
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet1Subnet7E34C168",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "testBudiBaseVpcPrivateSubnet1RouteTableE99B8A7E": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "testBudiBaseVpcPrivateSubnet1Subnet7E34C168": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "testBudiBaseVpcPrivateSubnet2DefaultRoute28BD977B": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1NATGateway1F2B10D2",
+        },
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet2RouteTableC689F68B",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "testBudiBaseVpcPrivateSubnet2RouteTableAssociationFF7D9DCB": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet2RouteTableC689F68B",
+        },
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPrivateSubnet2SubnetB20BD450",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "testBudiBaseVpcPrivateSubnet2RouteTableC689F68B": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "testBudiBaseVpcPrivateSubnet2SubnetB20BD450": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "testBudiBaseVpcPublicSubnet1DefaultRouteDBD7CCEA": Object {
+      "DependsOn": Array [
+        "testBudiBaseVpcVPCGW8CF19F95",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "testBudiBaseVpcIGWFD48D785",
+        },
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1RouteTableAA877DE5",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "testBudiBaseVpcPublicSubnet1EIPF8824DD9": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "testBudiBaseVpcPublicSubnet1NATGateway1F2B10D2": Object {
+      "DependsOn": Array [
+        "testBudiBaseVpcPublicSubnet1DefaultRouteDBD7CCEA",
+        "testBudiBaseVpcPublicSubnet1RouteTableAssociation423DB2F8",
+      ],
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "testBudiBaseVpcPublicSubnet1EIPF8824DD9",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1Subnet438EBE1B",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "testBudiBaseVpcPublicSubnet1RouteTableAA877DE5": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "testBudiBaseVpcPublicSubnet1RouteTableAssociation423DB2F8": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1RouteTableAA877DE5",
+        },
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet1Subnet438EBE1B",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "testBudiBaseVpcPublicSubnet1Subnet438EBE1B": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "testBudiBaseVpcPublicSubnet2DefaultRouteA0B259F9": Object {
+      "DependsOn": Array [
+        "testBudiBaseVpcVPCGW8CF19F95",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "testBudiBaseVpcIGWFD48D785",
+        },
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet2RouteTable3C4AD34A",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "testBudiBaseVpcPublicSubnet2RouteTable3C4AD34A": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "testBudiBaseVpcPublicSubnet2RouteTableAssociationB9BFF869": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet2RouteTable3C4AD34A",
+        },
+        "SubnetId": Object {
+          "Ref": "testBudiBaseVpcPublicSubnet2Subnet47D84652",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "testBudiBaseVpcPublicSubnet2Subnet47D84652": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseVpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "testBudiBaseVpcVPCGW8CF19F95": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "testBudiBaseVpcIGWFD48D785",
+        },
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "testBudibaseContainerLogGroup87A4C423": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "LogGroupName": "budibase",
+        "RetentionInDays": 731,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "testbudiBaselbSG6CF4A056": Object {
+      "Properties": Object {
+        "GroupDescription": "test/test/budiBaselbSG",
+        "GroupName": "BudiBaseLoadBalancer",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80,
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "BudiBaseLoadBalancer",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "testbudibaselb04CB7E45": Object {
+      "DependsOn": Array [
+        "testBudiBaseVpcPublicSubnet1DefaultRouteDBD7CCEA",
+        "testBudiBaseVpcPublicSubnet1RouteTableAssociation423DB2F8",
+        "testBudiBaseVpcPublicSubnet2DefaultRouteA0B259F9",
+        "testBudiBaseVpcPublicSubnet2RouteTableAssociationB9BFF869",
+      ],
+      "Properties": Object {
+        "LoadBalancerAttributes": Array [
+          Object {
+            "Key": "deletion_protection.enabled",
+            "Value": "false",
+          },
+        ],
+        "Name": "BudibaseLoadBalancer",
+        "Scheme": "internet-facing",
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "testbudiBaselbSG6CF4A056",
+              "GroupId",
+            ],
+          },
+        ],
+        "Subnets": Array [
+          Object {
+            "Ref": "testBudiBaseVpcPublicSubnet1Subnet438EBE1B",
+          },
+          Object {
+            "Ref": "testBudiBaseVpcPublicSubnet2Subnet47D84652",
+          },
+        ],
+        "Type": "application",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    },
+    "testbudibaselbListener80CA536A6B": Object {
+      "Properties": Object {
+        "DefaultActions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "testbudibaselbListener80listener80Group43F7DC76",
+            },
+            "Type": "forward",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "testbudibaselb04CB7E45",
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "testbudibaselbListener80listener80Group43F7DC76": Object {
+      "Properties": Object {
+        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckPath": "/",
+        "Matcher": Object {
+          "HttpCode": "200-299,301-302",
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "testBudiBaseVpc8BEFACD2",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
