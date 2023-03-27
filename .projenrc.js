@@ -18,7 +18,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
   autoApproveOptions: {
-    secret: 'PROJEN_GITHUB_TOKEN',
+    secret: 'GITHUB_TOKEN',
     allowedUsernames: ['neilkuan'],
   },
   publishToPypi: {
