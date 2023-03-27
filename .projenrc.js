@@ -14,11 +14,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
-      labels: ['auto-approve', 'auto-merge'],
+      labels: ['auto-approve'],
     },
   },
   autoApproveOptions: {
-    secret: 'GITHUB_TOKEN',
+    secret: 'PROJEN_GITHUB_TOKEN',
+    allowedUsernames: ['neilkuan'],
   },
   publishToPypi: {
     distName: 'cdk-budibase',
