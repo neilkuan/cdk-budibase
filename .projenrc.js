@@ -19,7 +19,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
-    allowedUsernames: ['neilkuan'],
   },
   publishToPypi: {
     distName: 'cdk-budibase',
