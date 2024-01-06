@@ -30,7 +30,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -54,3 +53,4 @@ cdk.out
 cdk.context.json
 yarn-error.log
 coverage
+!/.projenrc.js
