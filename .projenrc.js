@@ -29,7 +29,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdk-budibase',
     module: 'cdk_budibase',
   },
-  workflowNodeVersion: '^16',
+  workflowNodeVersion: '^20',
   typescriptVersion: '^4.9',
 });
 const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage'];
