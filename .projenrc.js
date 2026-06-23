@@ -32,6 +32,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   workflowNodeVersion: '^20',
   typescriptVersion: '^4.9',
 });
+project.eslint.allowDefaultProjectFiles('.projenrc.js');
 const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage'];
 project.gitignore.exclude(...common_exclude);
 
