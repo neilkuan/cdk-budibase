@@ -666,10 +666,10 @@
   dependencies:
     "@tybys/wasm-util" "^0.10.3"
 
-"@nodable/entities@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@nodable/entities/-/entities-2.2.0.tgz#a1d45a992b022591b1c2b03a77935c939375b642"
-  integrity sha512-9uGyhaQavEUMC8AIddIjau4NsnsXhou+j5sBAGojCM1oxmQpVKTWR/9JxABD6UAv12vpIms55fPZKFQEhG6uBg==
+"@nodable/entities@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@nodable/entities/-/entities-3.0.0.tgz#694703bc864d30eaed55c2e3def00dbd61493670"
+  integrity sha512-8L9xFeTYKhm49xfIypoe2W5wV1m/3Z58kT+7kR9A8OyFxcPduI4VmxaUMQyKYrRjUoLLSXv6EKKID5Tvj9cUVw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1540,9 +1540,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001803:
-  version "1.0.30001805"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001805.tgz#78d5d5968a69b7ff81af87a96d7ddc7ea6670b1e"
-  integrity sha512-52noaS3DubycKSXaU30TwPGIp+POyQSUVa5jBEq3vkRkY0kjyb3LQgvhU6WGyCcyXqVLWO0Cw0Q6BSdD0kUfVA==
+  version "1.0.30001806"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001806.tgz#1bc8e502b723fa393455dfbedd5ccec0c29bb74e"
+  integrity sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==
 
 case@1.6.3, case@^1.6.3:
   version "1.6.3"
@@ -2503,11 +2503,11 @@ fast-xml-builder@^1.2.0:
     xml-naming "^0.3.0"
 
 fast-xml-parser@^5.5.6:
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-5.10.0.tgz#8d08abfe4d6c51e9c5b51f417b994858dbedb4d7"
-  integrity sha512-SLhnTEqE5QpJHq/6zl9bsmImEP2adv+y6Wy+cJa7nVTRzQh1OZfCe9k29M5xN74LWnu0xa1zrUrq3KnOKl92Fg==
+  version "5.10.1"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-5.10.1.tgz#19313f7c9386c47fa4a1de527547b73ed2cfcede"
+  integrity sha512-IEMIf7298kXuZSRFoGfMYrl7is8LpavODgbNz1cwIudv7KwVFnuU+UsMporfq6PD6aXSlawZlARiA3UywCTfMw==
   dependencies:
-    "@nodable/entities" "^2.2.0"
+    "@nodable/entities" "^3.0.0"
     fast-xml-builder "^1.2.0"
     is-unsafe "^2.0.0"
     path-expression-matcher "^1.6.2"
@@ -4613,10 +4613,10 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-projen@0.101.15:
-  version "0.101.15"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.101.15.tgz#ee3d01a246a478f32fe818a05e298bd49ed71906"
-  integrity sha512-EsPU9BO8RrRuU1mEnRZwvcsAs6ok4pZ8tSTXWXaFTYYghBAL7RJLlOfvBpQbeRc0QsCM9V8NPpCvfl918MZ5dQ==
+projen@0.101.16:
+  version "0.101.16"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.101.16.tgz#dd25753ec51a38c7e9185159ed508c2d1fa44ce2"
+  integrity sha512-vUyYtMthrcnQW4O48KgYaMfFCwi5yklkw3u3kdGQxmWKkPxfXIEhlpEfYWsGbUSp3qEuZBYsFfaj/N/e5mWbEw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
