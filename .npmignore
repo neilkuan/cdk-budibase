@@ -18,7 +18,6 @@ dist
 /.github/
 /.vscode/
 /.idea/
-/.projenrc.js
 tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
@@ -28,3 +27,4 @@ yarn-error.log
 coverage
 image
 /.gitattributes
+/.projenrc.js
