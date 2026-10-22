@@ -5,6 +5,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: PROJECT_DESCRIPTION,
   defaultReleaseBranch: 'main',
   repository: 'https://github.com/neilkuan/cdk-budibase.git',
+  packageManager: 'yarn_classic',
   name: 'cdk-budibase',
   authorName: 'Neil Kuan',
   authorEmail: 'guan840912@gmail.com',
@@ -29,7 +30,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdk-budibase',
     module: 'cdk_budibase',
   },
-  workflowNodeVersion: '^20',
+  workflowNodeVersion: '^24',
   typescriptVersion: '^4.9',
 });
 project.eslint.allowDefaultProjectFiles('.projenrc.js');
