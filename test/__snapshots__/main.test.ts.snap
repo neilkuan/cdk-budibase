@@ -30,6 +30,12 @@ Object {
   "Resources": Object {
     "testBudiBaseAccessPoint276AE859": Object {
       "Properties": Object {
+        "AccessPointTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/test/BudiBaseAccessPoint",
+          },
+        ],
         "FileSystemId": Object {
           "Ref": "testBudiBaseFileSystem186F3DA0",
         },
@@ -202,12 +208,19 @@ Object {
         "testbudibaselbListener80CA536A6B",
         "testBudiBaseFileSystemEfsMountTarget13AD31BDE",
         "testBudiBaseFileSystemEfsMountTarget2921BB568",
+        "testBudiBaseTaskDefinitionTaskRoleDefaultPolicy22EDCD15",
+        "testBudiBaseTaskDefinitionTaskRole94C79232",
       ],
       "Properties": Object {
         "Cluster": Object {
           "Ref": "testBudiBaseCluster219451DD",
         },
         "DeploymentConfiguration": Object {
+          "Alarms": Object {
+            "AlarmNames": Array [],
+            "Enable": false,
+            "Rollback": false,
+          },
           "MaximumPercent": 200,
           "MinimumHealthyPercent": 50,
         },

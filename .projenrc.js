@@ -1,7 +1,7 @@
 const { awscdk, github } = require('projen');
 const PROJECT_DESCRIPTION = 'Use AWS CDK to create budibase server';
 const project = new awscdk.AwsCdkConstructLibrary({
-  cdkVersion: '2.63.0',
+  cdkVersion: '2.274.0',
   description: PROJECT_DESCRIPTION,
   defaultReleaseBranch: 'main',
   repository: 'https://github.com/neilkuan/cdk-budibase.git',
@@ -21,17 +21,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
       }),
     },
   },
-
   autoApproveOptions: {
     secret: 'PROJEN_GITHUB_TOKEN',
     allowedUsernames: ['auto-machine', 'neilkuan'],
   },
-  publishToPypi: {
-    distName: 'cdk-budibase',
-    module: 'cdk_budibase',
-  },
   workflowNodeVersion: '^24',
   typescriptVersion: '^4.9',
+  release: false,
 });
 project.eslint.allowDefaultProjectFiles('.projenrc.js');
 const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage'];
