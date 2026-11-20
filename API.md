@@ -4,6 +4,8 @@
 
 ### BudiBaseBaseResource <a name="BudiBaseBaseResource" id="cdk-budibase.BudiBaseBaseResource"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 #### Initializers <a name="Initializers" id="cdk-budibase.BudiBaseBaseResource.Initializer"></a>
 
 ```typescript
